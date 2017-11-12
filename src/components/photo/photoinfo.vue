@@ -6,8 +6,8 @@
 
     <div class="mui-content">
       <ul class="mui-table-view mui-grid-view mui-grid-9">
-        <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-          <img class="preview-img" v-for="(item, index) in list" :key="index" :src="item.src" height="100" @click="$preview.open(index, list)">
+        <li v-for="(item, index) in list" :key="index" class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
+          <img class="preview-img"  :src="item.src" height="100" @click="$preview.open(index, list)">
         </li>
       </ul> 
 		</div>
@@ -27,16 +27,7 @@ export default {
     return {
       imgid:this.$route.params.imgid,
       imginfo:{},
-      minimg:[],
-      list:[{
-          src: 'https://placekitten.com/600/400',
-          w: 600,
-          h: 400
-        }, {
-          src: 'https://placekitten.com/1200/900',
-          w: 1200,
-          h: 900
-        }]
+      list:[],
     };
   },
   methods:{
@@ -49,7 +40,14 @@ export default {
     getthum(){
       var url = common.devapi + "/api/getthumimages/"+this.imgid;
       this.$http.get(url).then(function(res){
-        this.minimg = res.body.message;
+        res.body.message.forEach(function(item){
+          //设置图片宽度为实际图片的宽高 以免图片放大后失真
+          var img = document.createElement("img");
+          img.src = item.src;
+          item.w = img.width;
+          item.h = img.height;
+        });
+        this.list = res.body.message;
       })
     }
   },
