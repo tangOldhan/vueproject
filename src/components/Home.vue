@@ -16,7 +16,7 @@
           <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><router-link to="/photo/photolist">
                   <span class="mui-icon mui-icon-image"></span>
                   <div class="mui-media-body">Photos</div></router-link></li>
-          <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><router-link to="/">
+          <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3"><router-link to="/goods/goodslist">
                   <span class="mui-icon mui-icon-chatbubble"></span>
                   <div class="mui-media-body">Shopping</div></router-link></li>
       </ul> 
