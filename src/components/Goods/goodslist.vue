@@ -3,7 +3,7 @@
     <div id="mui-content" class="mui-content" style="background-color:#fff">
 		    <ul class="mui-table-view mui-grid-view">
 		        <li v-for="(item,index) in list" :key="index" class="mui-table-view-cell mui-media mui-col-xs-6">
-		            <a href="#">
+		            <router-link :to="'/goods/goodsinfo/'+item.id">
 		                <img class="mui-media-object" :src="item.img_url">
 		                <div class="mui-media-body">{{item.title}}</div>
                     <div class="desc">
@@ -16,7 +16,7 @@
                         <span>剩余{{item.stock_quantity}}件</span>
                       </p>
                     </div>
-                </a>
+                </router-link>
             </li>
 		        
 		    </ul>    

@@ -9,6 +9,7 @@ import newsinfo from "../components/news/newsinfo.vue"
 import photolist from "../components/photo/photolist.vue"
 import photoinfo from "../components/photo/photoinfo.vue"
 import goodslist from "../components/Goods/goodslist.vue"
+import goodsinfo from "../components/Goods/goodsinfo.vue"
 
 Vue.use(Router)
 
@@ -24,7 +25,8 @@ export default new Router({
     {path:'/news/newsinfo/:newsid',component:newsinfo},
     {path:'/photo/photolist',component:photolist},
     {path:'/photo/photoinfo/:imgid',component:photoinfo},
-    {path:'/goods/goodslist',component:goodslist}
+    {path:'/goods/goodslist',component:goodslist},
+    {path:'/goods/goodsinfo/:goodsid',component:goodsinfo}
 
   ]
 })
