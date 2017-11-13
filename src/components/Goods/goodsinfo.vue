@@ -10,8 +10,8 @@
         <li>
           市场价:¥<s>{{info.market_price}}</s> 销售价:<span class="price">¥{{info.sell_price}}</span>
         </li>
-        <li>
-          购买数量：
+        <li class="relative">
+          购买数量：<inputnum class="abs" @senddata="getcount"></inputnum>
         </li>
         <li>
           <mt-button type="primary" size="small">立即购买</mt-button>
@@ -41,9 +41,11 @@
 <script>
 import slider from '../Subcom/slider.vue'
 import common from '../../assets/js/common'
+import inputnum from '../Subcom/inputNum'
 export default {
   components:{
-    slider
+    slider,
+    inputnum
   },
   data () {
     return {
@@ -72,10 +74,15 @@ export default {
       this.$http.get(url).then(function(res){
         this.info = res.body.message[0]
       })
+    },
+    getcount(count){
+      console.log(count);
     }
 }
 }
 </script>
+
+
 <style lang="css" scoped>
   #slider {
     border: 1px solid #ccc;
@@ -112,5 +119,16 @@ export default {
   }
   #other .btn {
     margin-bottom: 5px
+  }
+
+  .relative{
+    position: relative;
+    margin: 10px 0;
+    font-size: 16px;
+  }
+  .abs {
+    position: absolute;
+    top: 0;
+    left: 100px;
   }
 </style>
