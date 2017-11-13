@@ -29,7 +29,9 @@
       </ul>
     </div>
     <div id="other">
-      <mt-button class="btn" type="primary" size="large">图文详情</mt-button>
+      <router-link :to="'/goods/goodsdesc/'+id">
+        <mt-button class="btn" type="primary" size="large">图文详情</mt-button>
+      </router-link>
       <mt-button class="btn" type="danger" size="large">商品评论</mt-button>
     </div>
   </div>
