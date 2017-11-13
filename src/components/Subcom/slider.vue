@@ -2,7 +2,7 @@
   <div>
     <mt-swipe :auto="4000">
       <mt-swipe-item v-for="(item,index) in imgs" :key="index">
-        <img :src="item.img" alt="">
+        <img :src="item.img">
       </mt-swipe-item>
     </mt-swipe>
   </div>
@@ -23,7 +23,7 @@ export default {
 <style lang="css" scoped>
   .mint-swipe{
     width: 100%;
-    height: 222px;
+    height: 300px;
   }
   .mint-swipe img {
     width: 100%;
