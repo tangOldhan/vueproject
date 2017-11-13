@@ -1,10 +1,11 @@
 <template>
   <div>
-    <mt-swipe :auto="4000">
+    <!-- <mt-swipe :auto="4000">
       <mt-swipe-item v-for="(item,index) in imglist.message" :key="index">
         <img :src="item.img" alt="">
       </mt-swipe-item>
-    </mt-swipe>
+    </mt-swipe> -->
+    <slider :imgs="imglist"></slider>
 
     <router-view></router-view>
 
@@ -27,7 +28,11 @@
 </template>
 
 <script>
+  import slider from '../components/Subcom/slider.vue'
   export default {
+    components:{
+      slider
+    },
     data(){
       return{
         imglist:{}
@@ -37,7 +42,7 @@
       getlist(){
         var url = 'http://vue.studyit.io/api/getlunbo';
         this.$http.get(url).then(function(res){
-          this.imglist = res.body;
+          this.imglist = res.body.message;
         })
       }
     },
