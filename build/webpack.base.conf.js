@@ -64,7 +64,7 @@ module.exports = {
       },
       {
         test: /vue-preview.src.*?js$/,
-        loader: 'babel'
+        loader: 'babel-loader'
       }
     ]
   }
