@@ -10,6 +10,7 @@ import 'mint-ui/lib/style.css'
 import '../static/mui/css/mui.min.css'
 
 import '../static/css/main.css'
+import '../static/mui/css/iconfont.css'
 
 
 import VuePreview from 'vue-preview'
