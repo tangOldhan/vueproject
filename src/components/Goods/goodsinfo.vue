@@ -15,7 +15,7 @@
         </li>
         <li>
           <mt-button type="primary" size="small">立即购买</mt-button>
-          <mt-button type="danger" size="small">加入购物车</mt-button>
+          <mt-button type="danger" size="small" @click="addToCar">加入购物车</mt-button>
         </li>
       </ul>
     </div>
@@ -42,6 +42,7 @@
 import slider from '../Subcom/slider.vue'
 import common from '../../assets/js/common'
 import inputnum from '../Subcom/inputNum'
+import {vm,COUNTSTR} from '../../assets/js/vm'
 export default {
   components:{
     slider,
@@ -51,7 +52,8 @@ export default {
     return {
       id:0,
       list:[],
-      info:{}
+      info:{},
+      goodsquantity:0,
     };
   },
   created(){
@@ -76,7 +78,10 @@ export default {
       })
     },
     getcount(count){
-      console.log(count);
+      this.goodsquantity = count;
+    },
+    addToCar(){
+      vm.$emit(COUNTSTR,this.goodsquantity)
     }
 }
 }

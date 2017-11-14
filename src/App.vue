@@ -12,7 +12,9 @@
 				<span class="mui-tab-label">会员</span>
 			</router-link>
 			<router-link class="mui-tab-item" to="/shopcar">
-				<span class="mui-icon mui-icon-contact"></span>
+				<span class="mui-icon mui-icon-contact">
+					<span id="badge" class="mui-badge">0</span>
+				</span>
 				<span class="mui-tab-label">购物车</span>
 			</router-link>
 			<router-link class="mui-tab-item" to="search">
@@ -24,8 +26,15 @@
 </template>
 
 <script>
+import {vm,COUNTSTR} from "../src/assets/js/vm"
 export default {
-  name: 'app'
+	name: 'app',
+	created(){
+		vm.$on(COUNTSTR,function(count){
+			var badge = document.querySelector("#badge");
+			badge.innerText = (badge.innerText - 0)+count;
+		})
+	},
 }
 </script>
 
