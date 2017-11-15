@@ -12,6 +12,14 @@
         </li>
         <li class="relative">
           购买数量：<inputnum class="abs" @senddata="getcount"></inputnum>
+          <transition name="show" 
+            @before-enter="beforeEnter" 
+            @enter="enter"
+            @after-enter="afterEnter">
+
+            <div v-if="showball" class="ball"></div>
+          </transition>
+
         </li>
         <li>
           <mt-button type="primary" size="small">立即购买</mt-button>
@@ -55,6 +63,7 @@ export default {
       list:[],
       info:{},
       goodsquantity:1,
+      showball:false,
     };
   },
   created(){
@@ -84,9 +93,21 @@ export default {
     addToCar(){
       vm.$emit(COUNTSTR,this.goodsquantity);
       localdata.addToLocal({goodsid:this.id,count:this.goodsquantity});
+      this.showball = !this.showball;//点击添加 显示小球
+    },
+    beforeEnter(el){
+      el.style.transform = "translate(0,0)"
+    },
+    enter(el,done){
+      el.offsetWidth;
+      el.style.transform = "translate(80px,360px)";
+      done();
 
+    },
+    afterEnter(el){
+      this.showball = !this.showball
     }
-}
+  }
 }
 </script>
 
@@ -138,5 +159,16 @@ export default {
     position: absolute;
     top: 0;
     left: 100px;
+  }
+  .ball {
+    position: absolute;
+    top:-8px;
+    left:143px;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: red;
+    z-index: 100;
+    transition: all 0.3s ease;
   }
 </style>
