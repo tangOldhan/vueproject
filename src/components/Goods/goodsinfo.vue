@@ -43,6 +43,7 @@ import slider from '../Subcom/slider.vue'
 import common from '../../assets/js/common'
 import inputnum from '../Subcom/inputNum'
 import {vm,COUNTSTR} from '../../assets/js/vm'
+import localdata from '../../assets/js/localdata'
 export default {
   components:{
     slider,
@@ -53,7 +54,7 @@ export default {
       id:0,
       list:[],
       info:{},
-      goodsquantity:0,
+      goodsquantity:1,
     };
   },
   created(){
@@ -81,7 +82,9 @@ export default {
       this.goodsquantity = count;
     },
     addToCar(){
-      vm.$emit(COUNTSTR,this.goodsquantity)
+      vm.$emit(COUNTSTR,this.goodsquantity);
+      localdata.addToLocal({goodsid:this.id,count:this.goodsquantity});
+
     }
 }
 }
