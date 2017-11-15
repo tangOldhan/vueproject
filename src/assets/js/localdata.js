@@ -9,4 +9,24 @@ export default {
 
        localStorage.setItem('carlist',JSON.stringify(arr));
     },
+    getLocalData(){
+        var str = localStorage.getItem('carlist');
+        str = str || "[]";
+        
+        return JSON.parse(str);
+    },
+    getLocalObj(){
+        var arr = this.getLocalData();
+        var obj={};
+        for(var i=0; i<arr.length; i++){
+            var item = arr[i];
+            if( !obj[item.goodsid] ){
+                obj[item.goodsid] = item.count
+            }else{
+                obj[item.goodsid] += item.count
+            }
+        }
+        return obj;
+    }
+
 }
