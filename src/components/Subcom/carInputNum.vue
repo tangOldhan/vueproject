@@ -7,9 +7,10 @@
 </template>
 <script>
 export default {
-  props:['realcount'],
+  props:['realcount','goodsid'],
   data () {
     return {
+      resObj:{goodsid:0,type:'add'},
       count:1
     };
   },
@@ -19,17 +20,19 @@ export default {
   methods:{
     add(){
       this.count++;
-      this.postData();
+      this.postData("add");
     },
     substract(){
       if(this.count == 1){
         return
       }
       this.count--;
-      this.postData();
+      this.postData("substract");
     },
-    postData(){
-      this.$emit("senddata",this.count)
+    postData(type){
+      this.resObj.type = type
+      this.resObj.goodsid = this.goodsid
+      this.$emit("senddata",this.resObj)
     }
   }
 }

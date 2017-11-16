@@ -7,7 +7,7 @@
         <h4 v-text="item.title"></h4>
         <ul>
           <li>¥{{item.sell_price}}</li>
-          <li><carInputNum :realcount="item.cou"></carInputNum></li>
+          <li><carInputNum :realcount="item.cou" :goodsid="item.id" @senddata="getInputNum"></carInputNum></li>
           <li> <a href="#">删除</a> </li>
         </ul>
       </div>
@@ -35,6 +35,10 @@
       this.getlist();
     },
     methods:{
+      //获取子组件中传来的值 id count
+      getInputNum(resObj){
+        console.log(resObj);
+      },
       getlist(){
         //从loaclStorage获取数据
         var obj = localdata.getLocalObj();
