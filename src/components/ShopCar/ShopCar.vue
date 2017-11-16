@@ -37,7 +37,20 @@
     methods:{
       //获取子组件中传来的值 id count
       getInputNum(resObj){
-        console.log(resObj);
+        //更新本地数据
+        localdata.updateData(resObj);
+        //更新this.datalist中的当前数量
+        
+        for(var i=0; i<this.datalist.length; i++){
+          if(this.datalist[i].id == resObj.goodsid){
+            if(resObj.type == "add"){
+              this.datalist[i].cou++
+            }else{
+              this.datalist[i].cou-- 
+            }
+          }
+        }
+        
       },
       getlist(){
         //从loaclStorage获取数据
