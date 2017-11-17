@@ -13,6 +13,13 @@
       </div>
       
     </div>
+    <div class="settleCount">
+      <ul>
+        <li><h4>总计:(不含运费)</h4></li>
+        <li>已勾选商品{{totalCount}}件，总价:¥{{totalAmount}}元</li>
+      </ul>
+      <mt-button type="danger" size="small">去结算</mt-button>
+    </div>
     {{value}}
   </div>
 </template>
@@ -28,11 +35,29 @@
     data(){
       return {
         value:[],
-        datalist:[]
+        datalist:[],
+        totalAmount:0
       }
     },
     created(){
       this.getlist();
+    },
+    computed:{
+      totalCount(){
+        var trueArr = this.value.filter(function(item){return item});
+
+        var amount = 0;
+        this.value.forEach((item,index)=>{
+          if(item){
+            var count = this.datalist[index].cou;
+            var price = this.datalist[index].sell_price;
+            var itemamount = count*price;
+            amount += itemamount
+          }
+        })
+        this.totalAmount = amount
+        return trueArr.length
+      }
     },
     methods:{
       //点击删除
@@ -115,5 +140,17 @@
   }
   .list-right ul li:nth-of-type(1){
     color: red;
+  }
+
+  .settleCount{
+    display: flex;
+    align-items: center;
+  }
+  .settleCount ul {
+    width: 240px;
+    padding: 0 10px;
+    font-size: 14px;
+    margin-right: 30px
+    
   }
 </style>
