@@ -26,7 +26,7 @@ export default {
                 obj[item.goodsid] += item.count
             }
         }
-        return obj;
+        return obj; // 返回的数据结构类似：{87:2,89,1}
     },
     updateData(obj){
         var arr = this.getLocalData(); //获得当前loaclStorage中的数据
@@ -49,6 +49,16 @@ export default {
             }
         }
         //将处理结束的数组 保存到本地
+        localStorage.setItem('carlist',JSON.stringify(arr));
+    },
+    removeData(id){
+        var arr = this.getLocalData();
+        console.log(arr,id);
+        for(var i=arr.length-1; i>=0; i--){
+            if(arr[i].goodsid == id){
+                arr.splice(i,1)
+            }
+        }
         localStorage.setItem('carlist',JSON.stringify(arr));
     }
 

@@ -8,7 +8,7 @@
         <ul>
           <li>¥{{item.sell_price}}</li>
           <li><carInputNum :realcount="item.cou" :goodsid="item.id" @senddata="getInputNum"></carInputNum></li>
-          <li> <a href="#">删除</a> </li>
+          <li> <a href="javascript:void(0)" @click="delrow(item.id,index)">删除</a> </li>
         </ul>
       </div>
       
@@ -35,6 +35,15 @@
       this.getlist();
     },
     methods:{
+      //点击删除
+      //  1.删除localStorage中对应id的所有值
+      //  2.删除value中对应值
+      //  3.删除datalist中对应的id的值
+      delrow(id,index){
+        this.value.splice(index,1);
+        this.datalist.splice(index,1);
+        localdata.removeData(id);
+      },
       //获取子组件中传来的值 id count
       getInputNum(resObj){
         //更新本地数据
@@ -55,7 +64,7 @@
       getlist(){
         //从loaclStorage获取数据
         var obj = localdata.getLocalObj();
-        console.log(obj);
+        // console.log(obj);
         var idStr = '';
         for (var key in obj) {
           idStr += key + ",";
@@ -65,7 +74,8 @@
 
         var url = common.devapi+'/api/goods/getshopcarlist/'+idStr;
         this.$http.get(url).then(function(res){
-
+          //将本地数据中对应id的数量 赋值给服务器获得数据中对应id的数量值
+          //因为服务器获得的数据中的商品数量全是1，只是用来占位，需要赋予真实值，从而在页面上渲染出真实值
           res.body.message.forEach(function(item){
             item.cou = obj[item.id];
           })
