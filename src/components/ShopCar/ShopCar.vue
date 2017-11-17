@@ -25,6 +25,7 @@
 </template>
 
 <script>
+import { MessageBox } from 'mint-ui';
   import localdata from '../../assets/js/localdata'
   import common from '../../assets/js/common';
   import carInputNum from '../Subcom/carInputNum.vue'
@@ -65,9 +66,12 @@
       //  2.删除value中对应值
       //  3.删除datalist中对应的id的值
       delrow(id,index){
-        this.value.splice(index,1);
-        this.datalist.splice(index,1);
-        localdata.removeData(id);
+        MessageBox.confirm('确定删除该商品?').then(action => {
+          this.value.splice(index,1);
+          this.datalist.splice(index,1);
+          localdata.removeData(id);
+        });
+        
       },
       //获取子组件中传来的值 id count
       getInputNum(resObj){
@@ -145,6 +149,7 @@
   .settleCount{
     display: flex;
     align-items: center;
+    background-color: #eee;
   }
   .settleCount ul {
     width: 240px;
